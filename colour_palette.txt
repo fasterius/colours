@@ -1,0 +1,10 @@
+Colour	L20	L37	L60	L80
+Blue	0d2d59	1954a6	4e8ce4	a6c6f2
+Teal	0d4659	1981a4	4ebfe4	a6dff2
+Green	174f25	2e9e4a	61d17d	b0e8be
+Yellow	59460d	a48119	e4bf4e	f2dfa6
+Orange	59200d	a43b19	e4734e	f2b9a6
+Red	521414	a32929	d65c5c	ebadad
+Pink	590d33	a4195e	e44e99	f2a6cc
+Purple	200d59	3b19a4	734ee4	b9a6f2
+Grey	333333	666666	999999	cccccc
