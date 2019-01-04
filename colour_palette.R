@@ -1,13 +1,28 @@
 #!/usr/bin/env Rscript
 
+# Install missing packages (if applicable)
+packages <- c("ggplot2", "reshape", "dplyr")
+if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
+  message("installing missing packages ...")
+  tryCatch (silent = TRUE,
+            install.packages(setdiff(packages, rownames(installed.packages())),
+                             repos = "http://cran.us.r-project.org"),
+            warning = function(bc) {
+              source("http://bioconductor.org/biocLite.R")
+              biocLite(setdiff(packages, rownames(installed.packages())))
+            },
+            error = function(bc) {
+              source("http://bioconductor.org/biocLite.R")
+              biocLite(setdiff(packages, rownames(installed.packages())))
+            })
+}
+
 library("ggplot2")
 library("reshape")
 library("dplyr")
 
 # Read colours
-data <- read.table("~/local/scripts/misc/colour_palette.txt",
-                  header = TRUE,
-                  sep    = "\t")
+data <- read.table("rgb_colours.txt", header = TRUE, sep = "\t")
 
 # Convert to wide format
 data <- melt(data, id.vars = "Colour")
@@ -40,7 +55,7 @@ gg <- ggplot(data, aes(x = variable, y = Colour, fill = id)) +
     scale_fill_manual(values = palette, breaks = palette) +
     labs(x     = "Lightness",
          y     = NULL,
-         title = "Colour scheme based on #1954a6 from KTH")
+         title = "Colour scheme based on #1954A6 from KTH")
 
 # Save
-ggsave("~/local/scripts/colour_palette.png", gg, dpi = 300)
+ggsave("palette.png", gg, dpi = 300)
